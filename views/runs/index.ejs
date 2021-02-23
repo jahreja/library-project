@@ -1,0 +1,17 @@
+<h2>Search Runs</h2>
+
+<form action="/runs" method="GET">
+
+
+    <label>Location</label>
+    <input type="text" name="location" value="<% searchOptions.location %>">
+    </div>
+
+    <button type="submit">Search</button>
+
+</form>
+<div>
+    <% runs.forEach(run => { %>
+        <img height="150" width="100" src="<%= run.coverImagePath %>">
+    <% }) %>
+</div>
