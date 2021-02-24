@@ -1,0 +1,12 @@
+<h2><%= run.title %></h2>
+
+<img src="<%= run.coverImagePath %>" width="200" height="200">
+
+<div>Location: <%= run.location.name %> </div>
+<div>Distance: <%= run.distance %>km </div>
+<div>Run Type: <%= run.runType %> </div>
+<div>Description: <%= run.description %> </div>
+
+<a href="/runs/<%= run.id %>/edit">Edit</a>
+<%- include("../partials/deleteForm", { url: `/runs/${run.id}` }) %> 
+<a href="/locations/<%= run.location.id %>">View Location</a>

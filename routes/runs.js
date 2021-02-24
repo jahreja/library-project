@@ -46,23 +46,101 @@ router.post("/", async (req, res) => {
 
     try {
         const newRun = await run.save()
-        //res.redirect(`runs/${newRun.id}`)
-        res.redirect(`runs`)
+        res.redirect(`runs/${newRun.id}`)
     } catch {
         renderNewPage(res, run, true)
     }
 })
 
 
+//show book
+router.get("/:id", async (req, res) => {
+    try {
+        const run = await Run.findById(req.params.id).populate("location").exec()
+        res.render("runs/show", { run: run })
+    } catch {
+        res.redirect("/")
+    }
+})
+
+//edit book
+router.get("/:id/edit", async (req, res) => {
+    try {
+        const run = await Run.findById(req.params.id)
+        renderEditPage(res, run)
+    } catch {
+        res.redirect("/")
+    }
+
+})
+
+//update runs route
+router.put("/:id", async (req, res) => {
+    let run
+    try {
+        run = await Run.findById(req.params.id)
+        run.title = req.body.title
+        run.location = req.body.location
+        run.distance = req.body.distance
+        run.runType = req.body.runType
+        run.description = req.body.description
+        if (req.body.cover != null && req.body.cover != ""){
+            saveCover(run, req.body.cover)
+        }
+        await run.save()
+        res.redirect(`/runs/${run.id}`)
+    } catch {
+        if (run != null){
+            renderEditPage(res, run, true)
+        } else {
+            redirect("/")
+        }
+    }
+})
+
+//delete run page
+router.delete("/:id", async (req, res) => {
+    let run 
+    try {
+        run = await Run.findById(req.params.id)
+        await run.remove()
+        res.redirect("/runs")
+    } catch {
+        if (run != null){
+            res.render("runs/show", {
+                run: run,
+                errorMessage: "Could not remove run."
+            })
+        } else {
+            res.redirect("/")
+        }
+    }
+})
+
+
 async function renderNewPage(res, run, hasError = false) {
+    renderFormPage(res, run, "new", hasError)
+}
+
+async function renderEditPage(res, run, hasError = false) {
+    renderFormPage(res, run, "edit", hasError)
+}
+
+async function renderFormPage(res, run, form, hasError = false) {
     try {
         const locations = await Location.find({})
         const params = {
             locations: locations,
             run: run
         }
-        if (hasError) params.errorMessage = "Error Creating Run"
-        res.render("runs/new", params)
+        if (hasError){
+            if(form === "edit"){
+                if (hasError) params.errorMessage = "Error Editing Run"
+            } else {
+                if (hasError) params.errorMessage = "Error Creating Run"
+            }
+        }
+        res.render(`runs/${form}`, params)
     } catch {
         res.redirect("/runs")
     }

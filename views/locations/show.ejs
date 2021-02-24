@@ -4,6 +4,8 @@
 <% if (runsInLocation.length > 0) { %>
     <h2>Runs in <%= location.name %></h2>
     <% runsInLocation.forEach(run => { %>
-        <img height="150" width="150" src="<%= run.coverImagePath %>">
+        <a href="/runs/<%= run.id %>">
+            <img height="150" width="150" src="<%= run.coverImagePath %>">
+        </a>
     <% }) %>
 <% } %> 
