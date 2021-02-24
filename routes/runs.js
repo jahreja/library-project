@@ -1,21 +1,12 @@
 const express = require("express")
 const router = express.Router()
-const multer = require("multer")
-const path = require("path")
-const fs = require("fs")
 
 const Run = require("../models/run")
 const Location = require("../models/location")
-const uploadPath = path.join("public", Run.coverImageBasePath)
 
 const imageMimeTypes = ["image/jpeg", "image/png", "image/gif"]
 
-const upload = multer({
-    dest: uploadPath,
-    fileFilter: (req, file, callback) => {
-        callback(null, imageMimeTypes.includes(file.mimetype))
-    }
-})
+
 
 // All Runs Route
 router.get("/", async (req, res) => {
@@ -41,34 +32,27 @@ router.get("/new", async (req, res) => {
 })
 
 //Create runs route
-router.post("/", upload.single("cover"), async (req, res) => {
-    const fileName = req.file != null ? req.file.filename : null
+router.post("/", async (req, res) => {
     const run = new Run({
         title: req.body.title,
         location: req.body.location,
         distance: req.body.distance,
         runType: req.body.runType,
-        coverImageName: fileName,
         description: req.body.description
     })
+
+    saveCover(run, req.body.cover)
+
 
     try {
         const newRun = await run.save()
         //res.redirect(`runs/${newRun.id}`)
         res.redirect(`runs`)
     } catch {
-        if (run.coverImageName != null){
-            removeRunCover(run.coverImageName)
-        }
         renderNewPage(res, run, true)
     }
 })
 
-function removeRunCover(fileName){
-    fs.unlink(path.join(uploadPath, fileName), err => {
-        if (err) console.error(err)
-    })
-}
 
 async function renderNewPage(res, run, hasError = false) {
     try {
@@ -84,5 +68,13 @@ async function renderNewPage(res, run, hasError = false) {
     }
 }
 
+function saveCover(run, coverEncoded) {
+    if (coverEncoded == null) return
+    const cover = JSON.parse(coverEncoded)
+    if (cover != null && imageMimeTypes.includes(cover.type)) {
+        run.coverImage = new Buffer.from(cover.data, "base64")
+        run.coverImageType = cover.type
+    }
+}
 
 module.exports = router
