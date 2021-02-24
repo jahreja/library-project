@@ -1,6 +1,10 @@
 @import "shared/fonts.css";
 @import "shared/header.css";
 @import "shared/buttons.css";
+@import "shared/form.css";
+@import "shared/grid.css";
+@import "shared/location.css";
+@import "shared/runs.css";
 
 :root {
     font-family: "Noto Sans JP", sans-serif;
@@ -18,7 +22,7 @@ body {
 }
 
 .container {
-    max-width: 1400px;
+    max-width: 1300px;
     margin: auto;
     margin-bottom: 3rem;
 }

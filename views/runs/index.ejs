@@ -5,10 +5,10 @@
 
 
 </form>
-<div>
+<div class="run-grid">
     <% runs.forEach(run => { %>
         <a href="/runs/<%= run.id %>">
-            <img height="400" width="400" src="<%= run.coverImagePath %>">
+            <img class="ra-image" height="350" width="350" src="<%= run.coverImagePath %>">
         </a>
     <% }) %>
 </div>

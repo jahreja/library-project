@@ -1,0 +1,17 @@
+.run-details {
+    display: flex;
+}
+
+.run-details-label {
+    font-size: 1.2rem;
+    align-self: flex-start;
+}
+
+.run-details-grid {
+    display: grid;
+    align-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    grid-template-columns: auto, auto;
+    grid-template-rows: auto, auto;
+}

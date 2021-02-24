@@ -1,12 +1,27 @@
 <h2 class="page-header"><%= run.title %></h2>
 
-<img src="<%= run.coverImagePath %>" width="500" height="500">
+<div class="run-details">
+    <div>
+        <img src="<%= run.coverImagePath %>" width="500" height="500">
+        <div class="run-details-btn-grid">
+            <a class="btn btn-primary" href="/runs/<%= run.id %>/edit">Edit</a>
+            <%- include("../partials/deleteForm", { url: `/runs/${run.id}` }) %> 
+            <a class="btn btn-primary book-details-location-btn" href="/locations/<%= run.location.id %>">View Location</a>
+        </div>
+    </div>
 
-<div>Location: <%= run.location.name %> </div>
-<div>Distance: <%= run.distance %>km </div>
-<div>Run Type: <%= run.runType %> </div>
-<div>Description: <%= run.description %> </div>
+    <div class="run-details-grid">
+        <div class="run-details-label">Location:</div>
+        <div><%= run.location.name %></div>
+        <div class="run-details-label">Distance:</div>
+        <div><%= run.distance %>km</div>
+        <div class="run-details-label">Run Type:</div>
+        <div><%= run.runType %></div>
+        <div class="run-details-label">Description:</div>
+        <div><%= run.description %></div>
+    </div>
 
-<a href="/runs/<%= run.id %>/edit">Edit</a>
-<%- include("../partials/deleteForm", { url: `/runs/${run.id}` }) %> 
-<a href="/locations/<%= run.location.id %>">View Location</a>
+    
+
+</div>
+

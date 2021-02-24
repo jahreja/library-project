@@ -1,7 +1,10 @@
-<h2> class="page-header"Edit Run</h2>
+<h2 class="page-header">Edit Run</h2>
 <form action="/runs/<%= run.id %>?_method=PUT" method="POST">
 
     <%- include("_form_fields") %>
-    <a href="/runs">Cancel</a>
-    <button type="submit">Update</button>
+    <div class="form-row form-row-end btn-row">
+        <a class="btn btn-danger" href="/runs">Cancel</a>
+        <button class="btn btn-primary" type="submit">Update</button>
+    </div>
+
 </form>

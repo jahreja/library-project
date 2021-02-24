@@ -24,6 +24,7 @@
 .btn-primary {
     color: white;
     background: #d99058;
+    font-weight: 700;
 }
 
 .btn-danger {
