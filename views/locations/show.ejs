@@ -1,11 +1,11 @@
-<h2><%= location.name %></h2>
+<h2 class="page-header"><%= location.name %></h2>
 <a href="/locations/<%= location.id %>/edit">Edit</a>
 <%- include("../partials/deleteForm", { url: `/locations/${location.id}` }) %> 
 <% if (runsInLocation.length > 0) { %>
     <h2>Runs in <%= location.name %></h2>
     <% runsInLocation.forEach(run => { %>
         <a href="/runs/<%= run.id %>">
-            <img height="150" width="150" src="<%= run.coverImagePath %>">
+            <img height="300" width="300" src="<%= run.coverImagePath %>">
         </a>
     <% }) %>
 <% } %> 

@@ -1,0 +1,38 @@
+.btn {
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-family: "Noto Sans JP", sans-serif;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-row {
+    display: flex;
+    align-items: flex-start;
+}
+
+.btn-row > * {
+    margin-left: 1rem;
+}
+.btn-row > *:first-child {
+    margin-left: 0;
+}
+
+.btn-primary {
+    color: white;
+    background: #d99058;
+}
+
+.btn-danger {
+    color: white;
+    background: #fe6f5e;
+    font-weight: 700;
+}
+
+.btn-primary:hover, .btn-danger:hover {
+    cursor: pointer;
+    background: #f0dc82;
+}

@@ -1,9 +1,9 @@
-<h2>Recently Added</h2>
+<h2 class="page-header">Recently Added</h2>
 
 <div>
     <% runs.forEach(run => { %>
         <a href="/runs/<%= run.id %>">
-            <img height="150" width="150" src="<%= run.coverImagePath %>">
+            <img height="400" width="400" src="<%= run.coverImagePath %>">
         </a>
     <% }) %>
 </div>

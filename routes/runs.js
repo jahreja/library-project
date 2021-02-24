@@ -11,8 +11,8 @@ const imageMimeTypes = ["image/jpeg", "image/png", "image/gif"]
 // All Runs Route
 router.get("/", async (req, res) => {
     let searchOptions = {}
-    if (req.query.title != null && req.query.title !== ""){
-        searchOptions.title = new RegExp(req.query.title, "i")
+    if (req.query.location != null && req.query.location !== ""){
+        searchOptions.location = new RegExp(req.query.location, "i")
     }
     try {
         const runs = await Run.find(searchOptions)
@@ -20,7 +20,8 @@ router.get("/", async (req, res) => {
             runs: runs,
             searchOptions: req.query
         })
-    } catch {
+    } catch (err){
+        console.log(err)
         res.redirect("/")
     }
     

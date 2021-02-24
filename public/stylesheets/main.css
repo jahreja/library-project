@@ -1,0 +1,32 @@
+@import "shared/fonts.css";
+@import "shared/header.css";
+@import "shared/buttons.css";
+
+:root {
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(90deg, #ff9a2e, #ff9939);
+    color: white;
+}
+
+.container {
+    max-width: 1400px;
+    margin: auto;
+    margin-bottom: 3rem;
+}
+
+.inner-container {
+    margin: 0 2rem;
+}
+
+.page-header {
+    font-size: 2rem;
+}
