@@ -8,10 +8,17 @@
 }
 
 .run-details-grid {
+    padding-left: 1rem;
     display: grid;
     align-content: flex-start;
     align-items: center;
     gap: 1rem;
-    grid-template-columns: auto, auto;
-    grid-template-rows: auto, auto;
+    grid-template-columns: auto auto;
+}
+
+.run-details-btn-grid {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 1rem;
+
 }
