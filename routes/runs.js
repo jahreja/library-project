@@ -27,12 +27,12 @@ router.get("/", async (req, res) => {
     
 })
 
-//New runs Route
+// New Run Route
 router.get("/new", async (req, res) => {
     renderNewPage(res, new Run())
 })
 
-//Create runs route
+// Create Run route
 router.post("/", async (req, res) => {
     const run = new Run({
         title: req.body.title,
@@ -53,8 +53,7 @@ router.post("/", async (req, res) => {
     }
 })
 
-
-//show book
+// Show Run Route
 router.get("/:id", async (req, res) => {
     try {
         const run = await Run.findById(req.params.id).populate("location").exec()
@@ -64,7 +63,7 @@ router.get("/:id", async (req, res) => {
     }
 })
 
-//edit book
+// Edit Run Route
 router.get("/:id/edit", async (req, res) => {
     try {
         const run = await Run.findById(req.params.id)
@@ -75,7 +74,7 @@ router.get("/:id/edit", async (req, res) => {
 
 })
 
-//update runs route
+// Update Run Route
 router.put("/:id", async (req, res) => {
     let run
     try {
@@ -99,7 +98,7 @@ router.put("/:id", async (req, res) => {
     }
 })
 
-//delete run page
+// Delete Run Route
 router.delete("/:id", async (req, res) => {
     let run 
     try {
@@ -118,6 +117,8 @@ router.delete("/:id", async (req, res) => {
     }
 })
 
+
+// Render Functions, to reduce repeated code
 
 async function renderNewPage(res, run, hasError = false) {
     renderFormPage(res, run, "new", hasError)

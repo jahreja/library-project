@@ -3,7 +3,7 @@ const router = express.Router()
 const Location = require("../models/location")
 const Run = require("../models/run")
 
-// All locations Route
+// All Locations Route
 router.get("/", async (req, res) => {
     let searchOptions = {}
     if (req.query.name != null && req.query.name !== ""){
@@ -21,12 +21,12 @@ router.get("/", async (req, res) => {
     
 })
 
-//New locations Route
+//New Location Route
 router.get("/new", (req, res) => {
     res.render("locations/new", { location: new Location() })
 })
 
-//Create locations route
+//Create Location Route
 router.post("/", async (req, res) => {
     const location = new Location({
         name: req.body.name
@@ -42,6 +42,7 @@ router.post("/", async (req, res) => {
     }
 })
 
+// Show Location Route
 router.get("/:id", async (req, res) => {
     try {
         const location = await Location.findById(req.params.id)
@@ -56,6 +57,7 @@ router.get("/:id", async (req, res) => {
     }
 })
 
+// Edit Location Route
 router.get("/:id/edit", async (req, res) => {
     try {
         const location = await Location.findById(req.params.id)
@@ -65,6 +67,7 @@ router.get("/:id/edit", async (req, res) => {
     }
 })
 
+// Update Location Route
 router.put("/:id", async (req, res) => {
     let location
     try {
@@ -84,6 +87,7 @@ router.put("/:id", async (req, res) => {
     }
 })
 
+// Delete Location Route
 router.delete("/:id", async (req, res) => {
     let location
     try {
