@@ -2,7 +2,6 @@
 
 <div class="btn-row">
     <a class="btn btn-primary" href="/locations/<%= location.id %>/edit">Edit</a>
-    <%- include("../partials/deleteForm", { url: `/locations/${location.id}` }) %> 
 </div>
 
 <% if (runsInLocation.length > 0) { %>

@@ -2,13 +2,14 @@
 
 <form action="/locations" method="GET">
     <div class="form-row">
-        <div class="form-item">
+        <div class="form-item form-item-search">
             <label>Name</label>
             <input type="text" name="name" value="<% searchOptions.name %>">
         </div>
     </div>
 
-    <div class="form-row form-row-end">
+    <div class="form-row form-row-end btn-row">
+        <button class="btn btn-primary" type="submit">New Location</button>
         <button class="btn btn-primary" type="submit">Search</button>
     </div>
 
